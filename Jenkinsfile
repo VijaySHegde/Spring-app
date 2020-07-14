@@ -45,5 +45,18 @@ pipeline {
 	       
    }
 }
+	    stage('deploy to tomcat')
+              {
+                  steps
+                  {
+                       
+  withCredentials([usernamePassword(credentialsId: 'tomcat', passwordVariable: 'password', usernameVariable: 'username')])
+                      {
+   sh 'curl  http://15.206.149.195:8091/manager/text/undeploy?path=/cur -u ${username}:${password}'
+   sh 'curl -v -u ${username}:${password} -T target/Spring-app-0.0.1-SNAPSHOT.war http://15.206.149.195:8091/manager/text/deploy?path=/cur'
+                      }
+		  }
+	      }
+
 }
 }
