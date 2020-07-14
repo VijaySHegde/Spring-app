@@ -7,7 +7,7 @@ FROM tomcat:8.0-alpine
 
 LABEL maintainer="hegdevijay118@gmail.com"
 
-COPY target/*.war /usr/local/tomcat/webapps/
+ADD target/*.war /usr/local/tomcat/webapps/
 
 EXPOSE 8093
 
